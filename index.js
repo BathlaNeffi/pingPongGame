@@ -1,6 +1,7 @@
 var head1=document.getElementById('head1');
 var head2=document.getElementById('head2');
 var ball=document.getElementById('ball');
+let beat = new Audio('./hey.mp3');
 
 
 const storeName="NameNB";
@@ -60,6 +61,7 @@ let score,
     }
 
     function storeWin(head, score){
+        beat.pause();
         if(score>maxScore){
             maxScore=score;
             localStorage.setItem('storeName',head);
@@ -77,6 +79,8 @@ let score,
 
 window.addEventListener('keypress', function(){
 
+
+
     let headSpeed=20;
     let headRect=head1.getBoundingClientRect();
 
@@ -92,6 +96,7 @@ window.addEventListener('keypress', function(){
     if(this.event.code==='Enter'){
         if(!gameOn){
             gameOn=true;
+            beat.play();
 
 
             let ballRect=ball.getBoundingClientRect();
