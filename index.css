@@ -1,0 +1,39 @@
+body{
+    margin: 0px;
+}
+#game-container{
+    position: relative;
+
+
+}
+
+#head1, #head2 {
+    width: 200px;
+    height: 20px;
+    position: fixed;
+    left: 50%;
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+#head1 {
+    background-color: blue;
+    top: 0px;    
+}
+
+#head2 {
+    background-color: blueviolet;
+    bottom: 0px;
+}
+
+#ball{
+    height: 20px;
+    width: 20px;
+    background-color: red;
+    border-radius: 50%;
+    position: fixed;
+    top: 20px;
+    left: 52.5%;
+}
