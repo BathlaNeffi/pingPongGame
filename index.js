@@ -33,6 +33,7 @@ let score,
             alert(`${head} has max score of ${maxScore *10}`)
         }
         resetBoard(head);
+        
     })();
 
 
@@ -197,7 +198,7 @@ function getTouches(evt) {
 function handleTouchStart(evt) {
     const firstTouch = getTouches(evt)[0];                                      
     xDown = firstTouch.clientX;                                      
-    yDown = firstTouch.clientY;                                      
+    yDown = firstTouch.clientY;                                    
 };                                                
                                                                          
 function handleTouchMove(evt) {
@@ -261,7 +262,8 @@ function handleTouchMove(evt) {
 };
 
 
-ball.addEventListener('click', startGame);
+ball.addEventListener('touchstart', startGame);
+
 function startGame(){
     if(!gameOn){
         gameOn=true;
