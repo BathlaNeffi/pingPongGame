@@ -261,7 +261,7 @@ function handleTouchMove(evt) {
 };
 
 
-window.addEventListener('click', startGame);
+ball.addEventListener('click', startGame);
 function startGame(){
     if(!gameOn){
         gameOn=true;
@@ -327,6 +327,6 @@ function startGame(){
 
 
     }
-}
+};
 
 
