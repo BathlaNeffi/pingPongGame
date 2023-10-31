@@ -183,8 +183,8 @@ window.addEventListener('keydown', function(){
 })
 
 
-document.addEventListener('touchstart', handleTouchStart, false);        
-document.addEventListener('touchmove', handleTouchMove, false);
+window.addEventListener('touchstart', handleTouchStart, false);        
+window.addEventListener('touchmove', handleTouchMove, false);
 
 var xDown = null;                                                        
 var yDown = null;
@@ -257,72 +257,76 @@ function handleTouchMove(evt) {
     xDown = null;
     yDown = null; 
     
-    if(evt){
-        if(!gameOn){
-            gameOn=true;
-            beat.play();
-
-
-            let ballRect=ball.getBoundingClientRect();
-            let ballX=ballRect.x;
-            let ballY=ballRect.y;
-            let ballDia=ballRect.width;
-        
-            let head1Width=head1.offsetWidth;
-            let head1Hight=head1.offsetHeight;
-            let head2Width=head2.offsetWidth;
-            let head2Hight=head2.offsetHeight;
-
-            // now moving the ball
-
-            movement=setInterval(function(){
-                ballX+=ballSpeedX;
-                ballY+=ballSpeedY;
-                ball.style.top=ballY +'px';
-                ball.style.left=ballX +'px';
-
-                var head1X=head1.offsetLeft;
-                var head2X=head2.offsetLeft;
-
-                //  reverse direction in case of ball hits the vertical walls
-
-                if((ballX+ballDia) >windowWidth || ballX<0){
-                    ballSpeedX=-ballSpeedX;
-                }
-
-                // It specifies the center of the ball on the viewport
-                let ballPos = ballX + ballDia / 2;
-
-                // checking for rod1 hit
-
-                if(ballY<=head1Hight){
-                    ballSpeedY=-ballSpeedY;
-                    score++;
-                    //  now checking if the ball hits the head or not
-
-                    if((ballPos<head1X)|| ballPos>(head1Width+head1X)){
-                        storeWin(head2Name,score);
-                    }
-                }
-                // now checking for head2
-                else if((ballY + ballDia)>=(windowHeight-head2Hight)){
-                    ballSpeedY=-ballSpeedY;
-                    score++;
-                    //  now checking for if  ball hits the head or not
-                    if((ballPos <head2X)|| ballPos>(head2Width+head2X)){
-                        storeWin(head1Name,score);
-                    }
-                }
-
-
-
-
-
-            },10)
-
-
-        }
-    }
+    
 };
+
+
+window.addEventListener('click', startGame);
+function startGame(){
+    if(!gameOn){
+        gameOn=true;
+        beat.play();
+
+
+        let ballRect=ball.getBoundingClientRect();
+        let ballX=ballRect.x;
+        let ballY=ballRect.y;
+        let ballDia=ballRect.width;
+    
+        let head1Width=head1.offsetWidth;
+        let head1Hight=head1.offsetHeight;
+        let head2Width=head2.offsetWidth;
+        let head2Hight=head2.offsetHeight;
+
+        // now moving the ball
+
+        movement=setInterval(function(){
+            ballX+=ballSpeedX;
+            ballY+=ballSpeedY;
+            ball.style.top=ballY +'px';
+            ball.style.left=ballX +'px';
+
+            var head1X=head1.offsetLeft;
+            var head2X=head2.offsetLeft;
+
+            //  reverse direction in case of ball hits the vertical walls
+
+            if((ballX+ballDia) >windowWidth || ballX<0){
+                ballSpeedX=-ballSpeedX;
+            }
+
+            // It specifies the center of the ball on the viewport
+            let ballPos = ballX + ballDia / 2;
+
+            // checking for rod1 hit
+
+            if(ballY<=head1Hight){
+                ballSpeedY=-ballSpeedY;
+                score++;
+                //  now checking if the ball hits the head or not
+
+                if((ballPos<head1X)|| ballPos>(head1Width+head1X)){
+                    storeWin(head2Name,score);
+                }
+            }
+            // now checking for head2
+            else if((ballY + ballDia)>=(windowHeight-head2Hight)){
+                ballSpeedY=-ballSpeedY;
+                score++;
+                //  now checking for if  ball hits the head or not
+                if((ballPos <head2X)|| ballPos>(head2Width+head2X)){
+                    storeWin(head1Name,score);
+                }
+            }
+
+
+
+
+
+        },10)
+
+
+    }
+}
 
 
